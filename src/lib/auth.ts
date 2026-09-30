@@ -39,3 +39,25 @@ export async function requireRole(role: Role) {
   if (profile.role !== role) redirect(dashboardFor(profile.role));
   return profile;
 }
+
+export type Pasien = {
+  id_pasien: number;
+  nama_pasien: string;
+  nik: string | null;
+  tempatlahir: string | null;
+  tgllahir: string | null;
+  jk: string | null;
+  alamat: string | null;
+  no_hp: string | null;
+};
+
+// Data diri pasien milik akun yang login (null jika belum dilengkapi).
+export const getPasien = cache(async (idUser: string): Promise<Pasien | null> => {
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("pasien")
+    .select("id_pasien, nama_pasien, nik, tempatlahir, tgllahir, jk, alamat, no_hp")
+    .eq("id_user", idUser)
+    .maybeSingle();
+  return (data as Pasien | null) ?? null;
+});

@@ -9,6 +9,7 @@ Dibuat sebagai proyek Ujian Keahlian Kejuruan.
 - Tailwind CSS
 - Supabase (PostgreSQL + Auth + Row Level Security)
 - Zod (validasi input)
+- jsPDF + jspdf-autotable (laporan PDF), ExcelJS (laporan Excel)
 
 ## Fitur (progres)
 
@@ -16,9 +17,9 @@ Dibuat sebagai proyek Ujian Keahlian Kejuruan.
 - [x] Register, login, logout (password di-hash oleh Supabase Auth)
 - [x] 2 peran: admin dan pasien, halaman dilindungi per peran
 - [x] Dashboard admin (ringkasan data) dan dashboard pasien
-- [ ] CRUD poli, dokter, pasien (pencarian + pagination)
-- [ ] Pendaftaran berobat dan riwayat
-- [ ] Laporan PDF/Excel
+- [x] CRUD poli, dokter, pasien (pencarian + pagination)
+- [x] Pendaftaran berobat, riwayat, pembatalan, dan pengelolaan status oleh admin
+- [x] Laporan pendaftaran (filter periode/poli/status) dengan unduh PDF dan Excel
 - [ ] Deploy ke Vercel
 
 ## Cara menjalankan
@@ -64,6 +65,7 @@ Dibuat sebagai proyek Ujian Keahlian Kejuruan.
 database/   file SQL (skema dan data awal)
 docs/       ERD dan dokumentasi
 src/app/    halaman (landing, login, register, admin, pasien)
-src/lib/    koneksi Supabase dan helper auth
+src/components/  komponen UI dan form yang dipakai ulang
+src/lib/    koneksi Supabase, helper auth, validasi (zod), jadwal, query
 src/proxy.ts  penyegar sesi login dan pelindung halaman
 ```
